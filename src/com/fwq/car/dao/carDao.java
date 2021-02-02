@@ -1,7 +1,6 @@
 package com.fwq.car.dao;
 
 import com.fwq.car.pojo.Car;
-import com.fwq.car.pojo.User;
 import com.fwq.car.utils.DaoUtils;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
@@ -72,21 +71,16 @@ public class carDao {
         return runner.query(connection,sql,new BeanListHandler<>(Car.class));
 
     }
-
     //修改车
     public Boolean updateUCar(Integer id,String name,Double price,String type) throws SQLException {
         String sql = "update carinfo set name = ?,price = ?, type = ? where id = ?";
         return runner.update(connection,sql,name,price,type,id)>0?true:false;
-
     }
     //报修
     public Boolean updateUCarStatus(Integer id,String status) throws SQLException {
         String sql = "update carinfo set status = ? where id = ?";
         return runner.update(connection,sql,status,id)>0?true:false;
-
     }
-
-
     //删除车
     public Boolean delCar(Integer id) throws SQLException {
         String sql = "delete from carinfo where id = ?";
@@ -99,7 +93,6 @@ public class carDao {
         return runner.update(connection,sql,car.getName(),car.getPrice(),car.getType(),car.getStatus())>0?true:false;
     }
 
-
     //借车  还车
     public Boolean updateCarStatus(Integer id,String status) throws SQLException {
         String sql = "update carinfo set status = ? where id = ?";
@@ -107,15 +100,5 @@ public class carDao {
 
     }
 
-
-
-
-
-    @Test
-    public void test() throws SQLException {
-        carDao carDao = new carDao();
-        List<Car> cars = carDao.selectCarList();
-        System.out.println(cars);
-    }
 
 }
